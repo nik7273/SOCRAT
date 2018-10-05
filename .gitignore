@@ -5,6 +5,10 @@
 /test/test-results.xml
 *.log
 package-lock.json
+<<<<<<< HEAD
+=======
+*.vscode*
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355
 
 # Public files (generated)#
 ===============
@@ -28,4 +32,3 @@ _build/
 ehthumbs.db
 Thumbs.db
 .swp
-

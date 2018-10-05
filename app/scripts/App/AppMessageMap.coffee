@@ -17,7 +17,12 @@ module.exports = class AppMessageMap
         'app_analysis_charts',
         'app_analysis_reliability',
         'app_analysis_powercalc',
+<<<<<<< HEAD
         'app_analysis_stats'
+=======
+        'app_analysis_stats',
+        'app_analysis_modeler'
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355
       ]
       msgTo: 'type.inferAll'
       scopeTo: ['app_analysis_datalib']
@@ -32,7 +37,12 @@ module.exports = class AppMessageMap
         'app_analysis_charts',
         'app_analysis_reliability',
         'app_analysis_powercalc',
+<<<<<<< HEAD
         'app_analysis_stats'
+=======
+        'app_analysis_stats',
+        'app_analysis_modeler'
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355
       ]
     ,
       msgFrom: 'data summary'
@@ -106,7 +116,12 @@ module.exports = class AppMessageMap
         'app_analysis_charts',
         'app_analysis_reliability',
         'app_analysis_powercalc',
+<<<<<<< HEAD
         'app_analysis_stats'
+=======
+        'app_analysis_stats',
+        'app_analysis_modeler'
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355
       ]
       msgTo: 'get table'
       scopeTo: ['app_analysis_database']
@@ -120,9 +135,15 @@ module.exports = class AppMessageMap
         'app_analysis_charts',
         'app_analysis_reliability',
         'app_analysis_powercalc',
+<<<<<<< HEAD
         'app_analysis_stats'
+=======
+        'app_analysis_stats',
+        'app_analysis_modeler'
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355
       ]
     ]
 
   getMap: ->
     @_msgMap
+    

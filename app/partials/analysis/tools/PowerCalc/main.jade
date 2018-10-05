@@ -382,7 +382,10 @@ div(ng-controller="powerCalcMainCtrl as mainArea")
 				)
 				#chi2PowerUI
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355
 	div(ng-show='mainArea.selectedAlgorithm == "Power of a Simple Poisson Test"')
 		h3 Power of a Simple Poisson Test
 		p <i>This dialog provides rudimentary power analysis for an exact test of a Poisson parameter.  Specifically, our data are assumed to be x_1, x_2, ..., x_n iid Poisson(lambda), so that x = sum{x_i} is Poisson with mean n*lambda serves as the test statistic.  The critical value(s) for x are obtained using quantiles of the null Poisson distribution so as to cut off tail(s) of probability less than or equal to alpha.  The power of the test is then the probability of the critical region, computed from a Poisson distribution with the specified value of lambda.</i>
@@ -566,4 +569,8 @@ div(ng-controller="powerCalcMainCtrl as mainArea")
 						b {{mainArea.twoTestT}}
 				.form-inline
 					label p-value: &nbsp;
+<<<<<<< HEAD
 						b {{mainArea.twoTestPvalue}}
+=======
+						b {{mainArea.twoTestPvalue}}
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355

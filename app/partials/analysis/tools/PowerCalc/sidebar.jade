@@ -48,6 +48,7 @@ div(ng-controller="powerCalcSidebarCtrl as sidebar")
 						)
 					#alphaUI
 
+<<<<<<< HEAD
 		fieldset(ng-show="sidebar.selectedAlgorithm == 'Two-sample t test (general case)' && sidebar.deployed")
 			legend Data
 			.form-group
@@ -77,6 +78,43 @@ div(ng-controller="powerCalcSidebarCtrl as sidebar")
 				id = "twoTestSubCat"
 				)
 
+=======
+				//- .row.form-inline
+				//- 	button(
+				//- 		ng-click="sidebar.run()"
+				//- 	)
+
+
+		fieldset(ng-show="sidebar.selectedAlgorithm == 'Two-sample t test (general case)' && sidebar.deployed")
+			legend Data
+			.form-group
+				label Columns
+				select.form-control(
+				multiple
+				ng-model="sidebar.chosenColsTwo"
+				ng-options="col for col in sidebar.numericalCols"
+				ng-change="sidebar.run()"
+				)
+			.form-group
+				label Categories &nbsp;
+				select.form-control(
+					ng-model="sidebar.chosenCats"
+					ng-init="sidebar.chosenCats = sidebar.categoricalCols[0]"
+					ng-options="col for col in sidebar.categoricalCols"
+					ng-change="sidebar.update()"
+					id = "twoTestCat"
+				)
+			.form-group
+				label Subcategories
+				select.form-control(
+				multiple
+				ng-model="sidebar.chosenSubCatsTwo"
+				ng-options="col for col in sidebar.subCategoricalCols"
+				ng-change="sidebar.run()"
+				id = "twoTestSubCat"
+				)
+
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355
 		fieldset(ng-show="sidebar.selectedAlgorithm == 'One-Sample (or Paired) t Test' && sidebar.deployed")
 			legend Data
 			.form-group
