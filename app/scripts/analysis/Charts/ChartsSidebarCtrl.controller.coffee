@@ -24,6 +24,7 @@ module.exports = class ChartsSidebarCtrl extends BaseCtrl
     @graphs = []
     @selectedGraph = null
     @maxColors = 10
+    @dl = require 'datalib'
 
     # dataset-specific
     @dataFrame = null
@@ -53,6 +54,10 @@ module.exports = class ChartsSidebarCtrl extends BaseCtrl
       name: "orange"
       scheme: ["#B30000", "#E34A33", "#FC8D59", "#FDBB84", "#FDD49E", "#FEF0D9"]
     ]
+
+    # constants
+    @yearLowerBound = 1900
+    @yearUpperBound = 2018
 
     @dataService.getData().then (obj) =>
       if obj.dataFrame and obj.dataFrame.dataType?
@@ -85,6 +90,7 @@ module.exports = class ChartsSidebarCtrl extends BaseCtrl
   uniqueVals: (arr) -> arr.filter (x, i, a) -> i is a.indexOf x
 
   updateSidebarControls: (data=@dataFrame) ->
+
     @cols = data.header
     @numericalCols = (col for col, idx in @cols when data.types[idx] in ['integer', 'number'])
     @categoricalCols = (col for col, idx in @cols when data.types[idx] in ['string', 'integer'])
@@ -115,8 +121,34 @@ module.exports = class ChartsSidebarCtrl extends BaseCtrl
     # end if
 
     if @selectedGraph.x
-      @xCols = (col for col, idx in @cols when data.types[idx] in @selectedGraph.x)
+      if @selectedGraph.x.includes("date")
+        @xCols = []
+        colNameCounts = data.header.length
+        for nameIndex in [0..colNameCounts - 1]
+
+          randomeTestIndex1 = Math.floor(Math.random() * data.data.length)
+          dataValue1 = data.data[randomeTestIndex1][nameIndex]
+
+          randomeTestIndex2 = Math.floor(Math.random() * data.data.length)
+          dataValue2 = data.data[randomeTestIndex2][nameIndex]
+
+          randomeTestIndex3 = Math.floor(Math.random() * data.data.length)
+          dataValue3 = data.data[randomeTestIndex3][nameIndex]
+
+          checkCount = 0
+          for dataValue in [dataValue1, dataValue2, dataValue3]
+            if (parseInt(dataValue) or dataValue == 0) and @yearLowerBound < dataValue < @yearUpperBound
+              checkCount++
+          if checkCount == 3
+            @xCols.push data.header[nameIndex]
       @xCol = @xCols[0]
+
+    # trellis chart
+    else if @numericalCols.length > 1
+      @chosenCols = @numericalCols.slice(0, 2)
+      if @categoricalCols.length > 0
+        @labelCol = @categoricalCols[0]
+
     @originalXCols = @xCols
 
     if @selectedGraph.y
@@ -169,11 +201,6 @@ module.exports = class ChartsSidebarCtrl extends BaseCtrl
             if e == 'None' or $.inArray(e, variables) is -1 # e is not in the chosen variables
               newList.push(e)
         return newList
-
-      #@xCols = removeFromList([@yCol, @zCol, @rCol], @originalXCols)
-      #@yCols = removeFromList([@xCol, @zCol, @rCol], @originalYCols)
-      #@zCols = removeFromList([@xCol, @yCol, @rCol], @originalZCols)
-      #@rCols = removeFromList([@xCol, @yCol, @zCol], @originalRCols)
 
       @xCols = removeFromList([@yCol], @originalXCols)
       @yCols = removeFromList([@xCol], @originalYCols)
@@ -229,5 +256,3 @@ module.exports = class ChartsSidebarCtrl extends BaseCtrl
 #    for h in headers
 #      if selector.value is h.value then @graphInfo[ind] = parseFloat h.key
 #    @sendData.createGraph(@chartData, @graphInfo, @headers, @dataType, @selector4.scheme)
-
-

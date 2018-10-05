@@ -96,15 +96,7 @@ module.exports = class PowerCalcMainCtrl extends BaseCtrl
 			MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
 		#receive data
-		@$scope.$on 'powercalc:onetwoTestdata', (event, data)=>
-			@algorithmService.passDataByName(@selectedAlgorithm, data)
-			@loadData()
-
-		@$scope.$on 'powercalc:onePropdata', (event, data)=>
-			@algorithmService.passDataByName(@selectedAlgorithm, data)
-			@loadData()
-
-		@$scope.$on 'powercalc:twoPropdata', (event, data)=>
+		@$scope.$on 'powercalc:data', (event, data)=>
 			@algorithmService.passDataByName(@selectedAlgorithm, data)
 			@loadData()
 
@@ -268,7 +260,7 @@ module.exports = class PowerCalcMainCtrl extends BaseCtrl
 		@cfap_help = !@cfap_help;
 		return
 
-	
+
 	#OneProp function only
 	onePropRetrieve: () ->
 		@params = @algorithmService.getParamsByName(@selectedAlgorithm)
@@ -810,7 +802,6 @@ module.exports = class PowerCalcMainCtrl extends BaseCtrl
 	chi2Retrieve: () ->
 		@params = @algorithmService.getParamsByName(@selectedAlgorithm)
 		@chi2Power = parseFloat(@params.power.toPrecision(4))
-		console.log @chi2Power
 		@chi2chi2 = @params.chi2
 		@chi2chi2Max = @params.chi2Max
 		@chi2EffSize = @params.effSize
@@ -896,7 +887,8 @@ module.exports = class PowerCalcMainCtrl extends BaseCtrl
 		@params.n = @chi2N
 		@params.df = @chi2Df
 		@params.power = @chi2Power
-		@syncData(@params) 
+		@syncData(@params)
+		return
 
 	#functions for SimplePoissonGUI only
 	SimplePoissonGUI_click: () ->
@@ -1018,7 +1010,7 @@ module.exports = class PowerCalcMainCtrl extends BaseCtrl
 		@twoTestPvalue = parseFloat(@params.pvl.toPrecision(4))
 		@twoTestMode = @params.mode
 		if @deployed is true then @compAgents = ["S1:"+@params.comp[0], "S2:"+@params.comp[1]]
-		else @compAgents = ["Sample1", "Sample2"]		
+		else @compAgents = ["Sample1", "Sample2"]
 		@twoTestModes = ["Two Tailed", "One Tailed"]
 		@twoTestClick()
 		if (@twoTestN2 is Infinity) or (@twoTestN1 is Infinity)

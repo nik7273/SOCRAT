@@ -44,8 +44,14 @@ module.exports = class AppModuleList
     ,
       require 'scripts/analysis/tools/Reliability/Reliability.module.coffee'
     ,
+      require 'scripts/analysis/tools/Modeler/Modeler.module.coffee'
+    ,
       require 'scripts/analysis/tools/PowerCalc/PowerCalc.module.coffee'
+<<<<<<< HEAD
     , 
+=======
+    ,
+>>>>>>> dc6c35125e944737f4c3264e8d83abead41e5355
       require 'scripts/analysis/tools/Stats/Stats.module.coffee'
     ]
   ]
@@ -70,3 +76,4 @@ module.exports = class AppModuleList
   listAll: ->
     console.log @system
     @system.concat @listAnalysisModules()
+    
